@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <name>[REP+/REP/RGON]The Binding of Isaac:Exodus</name>
+    <directory>exodus</directory>
+    <id>0</id>
+    <description>
+	[h1]Exodus/出埃及记——逃离过去，迈向未知的救赎之路。[/h1]
+
+	[b]Exodus[/b] 是一款为《以撒的结合》精心打造的全新模组，为你的地下城冒险带来一次深刻的变革。本模组引入了一个全新的楼层——[b]伊甸园[/b]，作为教堂的替代选择。伊甸园是一个充满神秘与危险的地方，拥有独特的视觉风格、氛围和背景音乐。被遗忘的圣地，等待着勇敢者的探索。
+
+	在这个全新的楼层中，你将面对 [b]10多种独特的敌人[/b]，为你带来具有独特的攻击模式和行为机制，考验你的反应与策略。此外，我们还加入了 [b]美味？的新机制[/b]，让每一次探索都充满未知与惊喜。
+
+	本模组不仅仅是一个简单的楼层扩展，它是对《以撒的结合》世界观的一次深刻诠释。在未来，我们还将推出更多 [b]楼层变种[/b]，进一步丰富本模组的冒险体验。准备好踏上这场逃离与救赎的旅程，揭开伊甸园的秘密吧！
+
+	[b]模组特点：[/b]  
+	- [b]全新楼层：伊甸园[/b]  
+	- 替代教堂的亮绿花园，为你带来独特的视觉、氛围与背景音乐。  
+	- 充满神秘与危险的全新环境，等待你的探索。  
+
+	- [b]10+种独特敌人[/b]  
+	- 拥有不同的攻击模式与行为机制的新敌人，挑战你的技巧。  
+	- 全新的战斗体验，考验你的策略与反应能力。  
+
+	- [b]创新机制[/b]  
+	- 彩色的美味苹果，该如何区分善恶？  
+	- 隐藏的秘密与奖励房间，等待细心玩家发现。  
+
+	- [b]未来更新[/b]  
+	- 更多楼层变种即将推出，持续扩展《以撒的结合》的世界。
+
+	[b]本模组以REPENTOGON和StageAPI作为前置！[/b]
+	
+	本模组背景音乐来自游戏 AntonBlast，欢迎前去游玩！
+
+	伊甸园作为变种楼层，可以通过40分钟内战胜以撒来解锁。当然，也可以指令解锁：
+	exodus unlock eden
+	其他详细指令请参阅模组文件夹下的cmds.md
+
+	[h1]Exodus - Escape the Past, Embark on the Path to Unknown Redemption[/h1]
+
+	[b]Exodus[/b] is a meticulously crafted new mod for The Binding of Isaac, bringing a profound transformation to your dungeon adventures. This mod introduces a brand-new floor—[b]Eden[/b]—as an alternative to the Cathedral. Eden is a place filled with mystery and danger, featuring a unique visual style, atmosphere, and background music. It is a forgotten sanctuary, waiting to be explored by the brave.
+
+	In this new floor, you will encounter [b]over 10 unique enemies[/b], each with distinct attack patterns and behavioral mechanics, testing your reflexes and strategies. Additionally, Eden introduces [b]innovative/tasty? mechanics[/b], making every exploration full of unknowns and surprises.
+
+	This mod is not just a simple floor expansion; it is a deep interpretation of the The Binding of Isaac universe. In the future, we will release more [b]floor variants[/b] to further enrich your adventure. Prepare to embark on this journey of escape and redemption, and uncover the secrets of Eden!
+
+	[b]Mod Features:[/b]
+
+	[b]New Floor: Eden[/b]
+
+	Replaces the Cathedral, offering a unique visual style, atmosphere, and background music.
+
+	A mysterious and dangerous new environment awaits your exploration.
+
+	[b]10+ Unique Enemies[/b]
+
+	Each enemy has different attack patterns and behavioral mechanics, challenging your skills.
+
+	A fresh combat experience that tests your strategy and reflexes.
+
+	[b]Innovative Mechanics[/b]
+
+	Colorful, delicious apples—how will you distinguish good from evil?
+
+	Hidden secrets and reward rooms await attentive players.
+
+	[b]Future Updates[/b]
+
+	More floor variants are on the way, continuously expanding the world of The Binding of Isaac.
+
+	[b]This mod requires REPENTOGON and StageAPI to present a full stage!(Although a small part of it can work without them)[/b]
+
+	Eden, as a variant floor, can be unlocked by defeating Isaac within 40 minutes. Of course, it can also be unlocked via the command:
+	exodus unlock eden
+	For other detailed commands, please refer to cmds.md in the mod folder.
+
+	</description>
+    <version>1.0.2</version>
+    <visibility>Public</visibility>
+    <tag id="Lua"/>
+    <tag id="Pickups"/>
+    <tag id="Rooms"/>
+    <tag id="Floors"/>
+    <tag id="Enemies"/>
+    <tag id="Graphics"/>
+</metadata>

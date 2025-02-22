@@ -1,0 +1,5 @@
+<music root="music/">
+	<track name="The Mysterious Glasshouse" path="The Mysterious Glasshouse.ogg" loop="true"/>
+	<!--track name="The Mysterious Glasshouse" path="tempest_in_a_teapot.ogg" layer="tempest_in_a_teapot_layer.ogg" loop="true" /-->
+	<!--layer="Cathedral Layer.ogg" loop="true" layerfadespeed="0.005"-->
+</music>
