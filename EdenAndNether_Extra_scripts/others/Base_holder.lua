@@ -99,7 +99,7 @@ if StageAPI then
 	Function = function(_)
 		local room = Game():GetRoom()
 		local currentRoom = StageAPI.GetCurrentRoom()
-		if room:IsFirstVisit() and (not currentRoom or currentRoom.VisitCount == 1) then
+		if room:IsFirstVisit() and (not currentRoom or currentRoom.VisitCount == 1) and item.TheEden:IsStage() then
 			gridReplacementRNG:SetSeed(room:GetSpawnSeed(), 0) -- grid rng is broken for reward plates, so lets just do this
 			for i = 0, room:GetGridSize() do
 				local grid = room:GetGridEntity(i)
@@ -174,7 +174,7 @@ if StageAPI then
 	item.EdenGrid = StageAPI.GridGfx()
 	item.EdenGrid:AddDoors("gfx/backdrops/Eden_Door.png", StageAPI.DefaultDoorSpawn)
 	item.EdenGrid:SetDecorations("gfx/backdrops/Eden_props.png", "gfx/grid/props_05_depths.anm2", 43)
-	item.EdenGrid:SetRocks("gfx/backdrops/Eden_grids_2.png")
+	item.EdenGrid:SetRocks("gfx/backdrops/Eden_grids_.png")
 	--item.EdenGrid:SetPits("gfx/grid/grid_pit_ashpit.png",
 	item.EdenGrid:SetPits("gfx/backdrops/eden_pit_2.png",{{File = "gfx/backdrops/eden_pit_2.png"}},false)
 
@@ -188,19 +188,55 @@ if StageAPI then
 	item.EdenFallGrid = StageAPI.GridGfx()
 	item.EdenFallGrid:AddDoors("gfx/backdrops/Eden_Fall_Door.png", StageAPI.DefaultDoorSpawn)
 	item.EdenFallGrid:SetDecorations("gfx/backdrops/Eden_props.png", "gfx/grid/props_05_depths.anm2", 43)
-	item.EdenFallGrid:SetRocks("gfx/backdrops/Eden_fall_grids_2.png")
+	item.EdenFallGrid:SetRocks("gfx/backdrops/Eden_fall_grids_.png")
 	item.EdenFallGrid:SetPits("gfx/backdrops/eden_pit_2.png",{{File = "gfx/backdrops/eden_pit_2.png"}},false)
 
+	local grid_replace = {
+		['gfx/backdrops/Eden_fall_grids_.png'] = true,
+		['gfx/backdrops/Eden_grids_.png'] = true,
+	}
+	local original_ChangeRock = StageAPI.ChangeRock
+	local rock_replace_eden = "gfx/backdrops/grid_rock_eden.anm2"
+	StageAPI.ChangeRock = function(rock, filename)
+		local grid = rock.Grid local gs = grid:GetSprite() local rfilename = gs:GetFilename()
+		if grid:GetType() == 24 and grid_replace[filename] and rfilename ~= rock_replace_eden then
+			local anim = gs:GetAnimation() local fr = gs:GetFrame() 
+			gs:Load(rock_replace_eden,true)
+            gs:SetFrame(anim, fr)
+		end
+		original_ChangeRock(rock, filename)
+	end
 	
 	if REPENTOGON then
 		item.EdenGrid:SetPits("gfx/grid/grid_pit_ashpit.png",{{File = "gfx/grid/grid_pit_ashpit_.png"}},false)
 		item.EdenFallGrid:SetPits("gfx/grid/grid_pit_ashpit.png",{{File = "gfx/grid/grid_pit_ashpit_.png"}},false)
 		local s2 = Sprite() s2:Load("gfx/pit_Misc.anm2",true) s2:Play("pit",true) --s2:PlayOverlay("highlights",true) s2:ReplaceSpritesheet(1,"")
+		local s3 = Sprite() s3:Load("gfx/pit_Misc.anm2",true) s3:ReplaceSpritesheet(0,"gfx/backdrops/eden_pit_nowater.png") s3:LoadGraphics() s3:Play("pit",true)
+		table.insert(item.ToCall,#item.ToCall + 1,{CallBack = ModCallbacks.MC_PRE_GRID_ENTITY_ROCK_UPDATE, params = 24,
+		Function = function(_,grid,offset)
+			local gs = grid:GetSprite()
+			if gs:GetFilename() == rock_replace_eden then
+				local succ = false
+				for playerNum = 1, Game():GetNumPlayers() do
+					local player = Game():GetPlayer(playerNum - 1)
+					local dpos = player.Position - grid.Position
+					if (dpos.Y < 20 and math.abs(dpos.X) < 20) then succ = true break end
+				end
+				local c = gs.Color
+				local ca = c.A
+				if succ then if ca >= 0.5 then ca = ca - 0.05 end
+				else if ca <= 1 then ca = ca + 0.05 end end
+				gs.Color = Color(c.R,c.G,c.B,ca,c.RO,c.GO,c.BO)
+			end
+		end,
+		})
+		--!缺石桥/刺石桥的贴图
 		table.insert(item.ToCall,#item.ToCall + 1,{CallBack = ModCallbacks.MC_PRE_GRID_ENTITY_PIT_RENDER, params = nil,
 		Function = function(_,pit)
-			if item.TheEden:IsStage() then
+			if item.TheEden:IsStage() then		-- and item.Eden_Backdrop ~= ""
 				local s = pit:GetSprite() 
 				s2:SetFrame(s:GetFrame())
+				s3:SetFrame(s:GetFrame())
 				local cap1 = 628.318531 local cap2 = 7000
 				local base_val = BASE_VAL or Game():GetFrameCount()
 				local val = base_val % cap1
@@ -223,6 +259,7 @@ if StageAPI then
 				local path = "shaders/water_shader"
 				if item.Eden_Backdrop == "Fall" then path = "shaders/water_shader_Fall" end
 				if not s2:HasCustomShader(path) then s2:SetCustomShader(path) end
+				s3:Render(rpos)
 				s2:Render(rpos)--s2:RenderLayer(0,rpos)
 				return false
 			end
@@ -231,8 +268,10 @@ if StageAPI then
 	end
 
 	item.EdenBackdrop = StageAPI.RoomGfx(item.EdenWalls, item.EdenGrid, "_default", "stageapi/shading/shading")
+	item.EdenRainBackdrop = StageAPI.RoomGfx(item.EdenWalls, item.EdenGrid, "_default", "stageapi/shading/shading")
 	item.EdenFallBackdrop = StageAPI.RoomGfx(item.EdenFallWalls, item.EdenFallGrid, "_default", "stageapi/shading/shading")
 	item.EdenBackdrop.EAN_ID = "Base"
+	item.EdenRainBackdrop.EAN_ID = "Rain"
 	item.EdenFallBackdrop.EAN_ID = "Fall"
 
 	item.EdenRooms = {
@@ -243,7 +282,7 @@ if StageAPI then
 			"EdenFall_room_",
 		}
 	}
---l local base = require("EdenAndNether_Extra_scripts.others.Base_holder") StageAPI.ChangeRoomGfx(base.EdenBackdrop)
+	--l local base = require("EdenAndNether_Extra_scripts.others.Base_holder") StageAPI.ChangeRoomGfx(base.EdenBackdrop)
 	item.EdenRoomlist = {}
 
 	for _, roomName in ipairs(item.EdenRooms.RoomFiles) do
@@ -251,6 +290,9 @@ if StageAPI then
 		item.EdenRooms.RoomFiles[roomName] = ret
 		if roomName == "EdenFall_room_" then 
 			for u,v in pairs(ret) do if type(v) == "table" then v.SUBTYPE = 400 end end
+		end
+		if roomName == "Eden_room" then 
+			for u,v in pairs(ret) do if type(v) == "table" then v.SUBTYPE = 200 end end
 		end
 		item.EdenRoomlist[#item.EdenRoomlist + 1] = ret
 	end
@@ -294,7 +336,6 @@ if StageAPI then
 		if item.TheEden:IsStage() and Game():GetRoom():IsCurrentRoomLastBoss() then
 			return {Boss = StageAPI.GetBossData("Isaac"),}
 		end
-		
 	end)
 
 	StageAPI.AddCallback("EdenAndNether", "PRE_CHANGE_ROOM_GFX", 1, function(currentRoom, usingGfx, onRoomLoad)
@@ -319,18 +360,37 @@ if StageAPI then
 				if rng:RandomFloat() < 0.1 then is_fall = true end
 				local roominfo = StageAPI.GetCurrentRoom()
 				if roominfo and roominfo.Layout and roominfo.Layout.SubType == 400 then is_fall = true end
+				local is_rain = true
+				if roominfo and roominfo.Layout and roominfo.Layout.SubType == 500 then is_rain = true end
 				if is_fall then
 					item.Eden_Backdrop = "Fall"
 					item.TheEden:SetRoomGfx(item.EdenFallBackdrop, {RoomType.ROOM_BOSS,RoomType.ROOM_DEFAULT, RoomType.ROOM_TREASURE, RoomType.ROOM_MINIBOSS})
 					return item.EdenFallBackdrop
-				else 
-					item.Eden_Backdrop = ""
+				elseif is_rain then
+					StageAPI.ChangeStageShadow("gfx/overlay/eden/rain/",1,0.5,true,true)
+					Game():GetRoom():SetRainIntensity(auxi.choose(0.2,0.4,0.6))
+					item.Eden_Backdrop = "Rain"
+					item.TheEden:SetRoomGfx(item.EdenRainBackdrop, {RoomType.ROOM_BOSS,RoomType.ROOM_DEFAULT, RoomType.ROOM_TREASURE, RoomType.ROOM_MINIBOSS})
+					return item.EdenRainBackdrop
+				else
+					item.Eden_Backdrop = "Base"
 					item.TheEden:SetRoomGfx(item.EdenBackdrop, {RoomType.ROOM_BOSS,RoomType.ROOM_DEFAULT, RoomType.ROOM_TREASURE, RoomType.ROOM_MINIBOSS})
 					return item.EdenBackdrop
 				end
+			else 
+				item.Eden_Backdrop = nil
 			end
 		end
 	end)
+	
+	table.insert(item.ToCall,#item.ToCall + 1,{CallBack = ModCallbacks.MC_POST_UPDATE, params = nil,
+	Function = function()
+		if item.TheEden:IsStage() and item.Eden_Backdrop == "Rain" then
+			local rndpos = Game():GetRoom():GetRandomPosition(20)
+			local q = Isaac.Spawn(1000,135,0,rndpos,Vector(0,0),nil):ToEffect()
+		end
+	end,
+	})
 
 	StageAPI.ChangeStageShadow = function(prefix, count, opacity, useBlendMode, DontRemove, UpdateTime)
 		local shared = require("scripts.stageapi.shared")
@@ -445,7 +505,6 @@ if StageAPI then
 					local s = door:GetSprite()
 					if s:GetAnimation() == "Close" and s:GetFrame() < 4 then
 						s:Play("Opened",true)
---						print("fixed")
 					end
 				end
 			end
@@ -618,6 +677,11 @@ if StageAPI then
 				fx.LightColor = KColor(0,1,0,1)
 				fx.ShadowColor = KColor(0,1,0,1)
 				fx.ShadowAlpha = 0.5
+			elseif id == "Rain" then
+				local fx = Game():GetRoom():GetFXParams()
+				fx.LightColor = KColor(0,0,1,1)
+				fx.ShadowColor = KColor(0,0,1,1)
+				fx.ShadowAlpha = 0.5
 			elseif id == "Fall" then
 				local fx = Game():GetRoom():GetFXParams()
 				fx.LightColor = KColor(1,1,0,1)
@@ -638,7 +702,7 @@ if StageAPI then
 			item.decide_with_id(usingGfx.EAN_ID)
 		end
 	end)
---[[
+	--[[
 	StageAPI.ChangeRoomGfx = function(roomgfx)
 		local shared = require("scripts.stageapi.shared")
 		local INNER_ID = ""
@@ -973,6 +1037,25 @@ if StageAPI then
 		end
 	end,
 	})	
+end
+
+item.try_convert = function(ent,params)
+	params = params or {} 
+	params.tp = params.tp or params.type or ent.Type
+	params.vr = params.vr or params.variant or ent.Variant
+	params.st = params.st or params.subtype or ent.SubType
+	if not StageAPI then return end
+	params.check = params.check or function() 
+		if item.TheEden:IsStage() then
+			local roominfo = StageAPI.GetCurrentRoom()
+			if roominfo and roominfo.Layout and roominfo.Layout.SubType == 200 then return true end
+		end
+	end
+	if auxi.check_if_any(params.check,ent,params) and (ent.Variant ~= params.vr or ent.SubType ~= params.st) then
+		if ent:IsChampion() then ent:Morph(params.tp,params.vr,params.st,ent:GetChampionColorIdx())
+		else ent:Morph(params.tp,params.vr,params.st,-1) end
+		return true
+	end
 end
 
 if REPENTOGON and Options.Language == "zh" then		--标题替换

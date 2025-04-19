@@ -62,6 +62,16 @@
     <entity Group="Monsters" ID="613" Variant="747" Subtype="0" Image="Entities/boss_maid_mist.png" Kind="EAN_Entities" Name="Maid of the Mist" />
     <!-- Lil Ghast -->
     <entity Group="Monsters" ID="613" Variant="748" Subtype="0" Image="Entities/lil_ghast.png" Kind="EAN_Entities" Name="Lil Ghast" />
+
+    <entity Group="Monsters" ID="27" Variant="747" Subtype="0" Image="Entities/mega_host.png" Kind="EAN_Entities" Name="Mega Host" />
+    <entity Group="Monsters" ID="27" Variant="1" Subtype="747" Image="Entities/skulless_mega_host.png" Kind="EAN_Entities" Name="Skulless Mega Host" />
+
+    <entity Group="Monsters" ID="88" Variant="747" Subtype="0" Image="Entities/blossoms_agave.png" Kind="EAN_Entities" Name="Blossoms Agave" />
+    <entity Group="Monsters" ID="88" Variant="747" Subtype="1" Image="Entities/blossoms_apple.png" Kind="EAN_Entities" Name="Blossoms Apple" />
+    <entity Group="Monsters" ID="88" Variant="747" Subtype="2" Image="Entities/blossoms_hura.png" Kind="EAN_Entities" Name="Blossoms Hura" />
+    <entity Group="Monsters" ID="88" Variant="747" Subtype="3" Image="Entities/blossoms_pea.png" Kind="EAN_Entities" Name="Blossoms Pea" />
+    <entity Group="Monsters" ID="88" Variant="747" Subtype="4" Image="Entities/blossoms_thorny.png" Kind="EAN_Entities" Name="Blossoms Thorny" />
+    <entity Group="Monsters" ID="284" Variant="747" Subtype="0" Image="Entities/sandstone.png" Kind="EAN_Entities" Name="Sandstone" />
     <!-- Apple -->
     <entity Group="Pickup" ID="5" Variant="747" Subtype="0" Image="Entities/apple.png" Kind="EAN_Entities" Name="Apple (Random)" />
     <entity Group="Pickup" ID="5" Variant="747" Subtype="1" Image="Entities/apple_1.png" Kind="EAN_Entities" Name="Apple (Red)" />

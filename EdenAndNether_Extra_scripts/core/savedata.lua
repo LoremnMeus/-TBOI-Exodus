@@ -129,6 +129,7 @@ end,
 
 table.insert(item.ToCall,#item.ToCall + 1,{CallBack = ModCallbacks.MC_POST_GAME_STARTED, params = nil,
 Function = function(_,continue)
+	item.Started = true
 	if continue ~= true then item.SaveModData() end
 end,
 })
@@ -141,6 +142,7 @@ end,
 
 table.insert(item.post_ToCall,#item.post_ToCall + 1,{CallBack = ModCallbacks.MC_PRE_GAME_EXIT, params = nil,
 Function = function(_,shouldSave)		--离开游戏
+	item.Started = nil
 	if shouldSave == false then item.elses = {} end
 	item.SaveModData()
 end,
@@ -164,6 +166,19 @@ end
 table.insert(item.ToCall,#item.ToCall + 1,{CallBack = ModCallbacks.MC_POST_PLAYER_INIT, params = nil,		--小红罐、里拉萨路会让角色的种子反复变化，这点异常诡异。所以需要使用额外的策略来保证其正确。 此外，小红罐还会导致角色生成时类型变为0。
 Function = function(_,player)
 	local tp = player:GetPlayerType()
+	if player:GetData().__Index then
+		local idx = player:GetData().__Index
+		item.PERSISTENT_PLAYER_DATA[idx] = {
+			__INDEX = idx,
+			__META = {
+				Index = player.ControllerIndex,
+				Seed = player.InitSeed,
+				PlayerType = player:GetPlayerType(),
+				player = player,
+			}
+		}
+		return
+	end
 	for i, plyr in ipairs(item.PERSISTENT_PLAYER_DATA) do
 		if player.ControllerIndex == plyr.__META.Index and player.InitSeed == plyr.__META.Seed and tp == plyr.__META.PlayerType then
 			player:GetData().__Index = i
@@ -171,7 +186,7 @@ Function = function(_,player)
 			return
 		end
 	end
-	if Game():GetFrameCount() ~= 0 and g.Started ~= true then
+	if Game():GetFrameCount() ~= 0 and item.Started ~= true then
 		for i, plyr in ipairs(item.PERSISTENT_PLAYER_DATA) do
 			if player.ControllerIndex == plyr.__META.Index and ((tp == plyr.__META.PlayerType) or (tp == 0 and plyr.__META.Once_type == 0)) and auxi.check_all_exists(plyr.__META.player) ~= true then
 				player:GetData().__Index = i

@@ -40,10 +40,7 @@ end,
 table.insert(item.ToCall,#item.ToCall + 1,{CallBack = ModCallbacks.MC_POST_NPC_INIT, params = 41,
 Function = function(_,ent)
     if StageAPI and ent.Variant <= 1 then
-        if Base_holder.TheEden:IsStage() then
-            if ent:IsChampion() then ent:Morph(41,item.entity,0,ent:GetChampionColorIdx())
-            else ent:Morph(41,item.entity,0,-1) end
-        end
+        Base_holder.try_convert(ent,{type = 41,variant = item.entity,subtype = 0,})
     end
     if ent.Variant == item.entity then
         local s = ent:GetSprite()

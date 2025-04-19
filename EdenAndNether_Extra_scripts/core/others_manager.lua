@@ -10,6 +10,7 @@ local Others_manager = {
 
 function Others_manager.Init(mod)
 	modReference = mod
+	--save.Init(modReference)
 	table.insert(Others_manager.items,#Others_manager.items + 1,require("EdenAndNether_Extra_scripts.auxiliary.delay_buffer"))
 	table.insert(Others_manager.items,#Others_manager.items + 1,require("EdenAndNether_Extra_scripts.core.savedata"))
 	table.insert(Others_manager.items,#Others_manager.items + 1,require("EdenAndNether_Extra_scripts.others.Input_holder"))
@@ -25,6 +26,7 @@ function Others_manager.Init(mod)
 	table.insert(Others_manager.items,#Others_manager.items + 1,require("EdenAndNether_Extra_scripts.others.Screen_Filter"))
 	table.insert(Others_manager.items,#Others_manager.items + 1,require("EdenAndNether_Extra_scripts.others.Achievement_Display_holder"))
 	table.insert(Others_manager.items,#Others_manager.items + 1,require("EdenAndNether_Extra_scripts.others.GiantBook_holder"))
+	table.insert(Others_manager.items,#Others_manager.items + 1,require("EdenAndNether_Extra_scripts.others.Knife_info"))
 	table.insert(Others_manager.items,#Others_manager.items + 1,require("EdenAndNether_Extra_scripts.translations.EID"))
 	Others_manager.MakeItems()
 end

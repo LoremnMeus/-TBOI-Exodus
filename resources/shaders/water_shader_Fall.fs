@@ -115,6 +115,7 @@ void main(void)
         gl_FragColor = vec4(gl_FragColor.rgb,alpha);
         // Color reduction
         gl_FragColor.rgb = mix(gl_FragColor.rgb, gl_FragColor.rgb - mod(gl_FragColor.rgb, 1.0/16.0), clamp(PixelationAmountOut, 0.0, 1.0));
+        gl_FragColor.a = gl_FragColor.a * 0.3;
 
 
         

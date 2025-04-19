@@ -997,6 +997,21 @@ function funct.move_in_rou(pos,col,raw)
 	return ret
 end
 
+function funct.getanglefromdir(dir)
+    if (dir ~= Direction.NO_DIRECTION) then
+		if (dir == Direction.LEFT) then
+			return Vector(-1,0)
+		elseif (dir == Direction.UP) then
+			return Vector(0,-1)
+		elseif (dir == Direction.RIGHT) then
+			return Vector(1,0)
+		elseif (dir == Direction.DOWN) then
+			return Vector(0,1)
+		end
+    end
+	return Vector(0,0)
+end
+
 function funct.GetfamiliarDir(ent, dir, allow_king)
 	if (allow_king == nil) then
         allow_king = true
@@ -1034,7 +1049,6 @@ function funct.GetfamiliarDir(ent, dir, allow_king)
 		end
     end
     return Vector(0,0)
-	
 end
 
 local dir_name = {
@@ -2871,6 +2885,7 @@ function auxi.add_function(f1,f2,deal)
 	end
 	return f
 end
+function funct.copyVec(v) return Vector(v.X,v.Y) end
 function funct.TryCopy(v)
 	if type(v) == "userdata" and v.X and v.Y then return funct.copyVec(v) end
 	if type(v) == "table" then return funct.deepCopy(v) end
@@ -2897,5 +2912,72 @@ function funct.SetPoopSpriteState(grid, sprite)
         sprite:SetFrame("State1", 4)
     end
 end
+
+function funct.calculate_height_base_on_rate(rate,height)		--按抛物线最高点和进程占比计算抛物线的高度
+	local v1 = math.abs(0.5 - rate)
+	return height * (1 - 4 * v1 * v1)
+end
+
+function funct.check_if_value(val,default,...)
+	if type(val) == "function" then return val(...) end
+	return (default or (function(v) return v end))(val,...)
+end
+
+function funct.cut_by(v,tbl,params)		--将一个支持乘法的值按tbl内容切分为同数量段。
+	local ret = {}
+	params = params or {}
+	if type(tbl) == "number" then 
+		if tbl >= 0 then
+			for i = 1,tbl do ret[i] = auxi.check_if_value(v,function(v,a) return v * a end,i/tbl) end
+		else return {v} end
+	else 
+		local cnt = 0
+		local ct = 0
+		for i = 1,#tbl do local v = tbl[i] cnt = cnt + v end
+		if cnt > 0 then 
+			for i = 1,#tbl do 
+				ct = ct + tbl[i]/cnt
+				ret[i] = auxi.check_if_value(v,function(v,a) return v * a end,ct) 
+			end
+		else return {v} end
+	end
+	table.insert(ret,1,auxi.check_if_value(v,function(v,a) return v * a end,0)) 
+	return ret
+end
+--l local auxi = require("Qing_Extra_scripts.auxiliary.functions") auxi.PrintTable(auxi.cut_by(auxi.sigmod,{5,2,41,-1,20,}))
+function funct.set_to(tbl,tbl2,key)		--将tbl2内所有值作为tbl的key键值对应值
+	key = key or "Setted"
+	for u,v in pairs(tbl2 or {}) do 
+		tbl[u] = tbl[u] or {}
+		tbl[u][key] = v
+	end
+	return tbl
+end
+
+function funct.make_lerp(tbl)
+	tbl = tbl or {}
+	params = params or {}
+	local ret = {{frame = 0,},}
+	local total = 0
+	if #tbl > 0 then 
+		local multi = 0
+		for i = 1,#tbl do 
+			table.insert(ret,#ret + 1,{frame = tbl[i] + multi,})
+			if not tbl.multi then multi = multi + tbl[i] end
+		end
+		total = multi if tbl.multi then total = total + tbl[#tbl] end
+	end
+	if tbl.cnt or tbl.mul then
+		for i = 1,(tbl.mul or 1) do
+			table.insert(ret,#ret + 1,{frame = total + i * (tbl.cnt or 1),})
+		end
+		total = total + (tbl.cnt or 1) * (tbl.mul or 1)
+	end
+	if not tbl.no_total then ret.total = total end
+	return ret
+end
+
+function funct.do_t(v1,v2) return v1.X * v2.X + v1.Y * v2.Y end
+function funct.cros_s(v1,v2) return v1.X * v2.Y - v1.Y * v2.X end
 
 return funct

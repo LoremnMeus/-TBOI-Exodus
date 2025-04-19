@@ -16,10 +16,7 @@ local item = {
 table.insert(item.ToCall,#item.ToCall + 1,{CallBack = ModCallbacks.MC_NPC_UPDATE, params = 15,
 Function = function(_,ent)
     if StageAPI and ent.Variant == 1 then
-        if Base_holder.TheEden:IsStage() and ent.Variant == 2 then
-            if ent:IsChampion() then ent:Morph(217,item.entity,0,ent:GetChampionColorIdx())
-            else ent:Morph(217,item.entity,0,-1) end
-        end
+        Base_holder.try_convert(ent,{type = 217,variant = item.entity,subtype = 0,})
     end
 end,
 })
@@ -40,10 +37,7 @@ end,
 table.insert(item.ToCall,#item.ToCall + 1,{CallBack = ModCallbacks.MC_NPC_UPDATE, params = 217,
 Function = function(_,ent)
     if StageAPI and ent.Variant == 0 then
-        if Base_holder.TheEden:IsStage() then
-            if ent:IsChampion() then ent:Morph(217,item.entity,0,ent:GetChampionColorIdx())
-            else ent:Morph(217,item.entity,0,-1) end
-        end
+        Base_holder.try_convert(ent,{type = 217,variant = item.entity,subtype = 0,})
     end
     if ent.Variant == item.entity then
         local s = ent:GetSprite()

@@ -60,11 +60,8 @@ Function = item.checkandmorph2seed,
 
 table.insert(item.ToCall,#item.ToCall + 1,{CallBack = ModCallbacks.MC_NPC_UPDATE, params = 22,
 Function = function(_,ent)
-    if StageAPI then
-        if Base_holder.TheEden:IsStage() and ent.Variant == 2 then
-            if ent:IsChampion() then ent:Morph(16,item.entity,0,ent:GetChampionColorIdx())
-            else ent:Morph(16,item.entity,0,-1) end
-        end
+    if ent.Variant == 2 then
+        Base_holder.try_convert(ent,{type = 16,variant = item.entity,subtype = 0,})
     end
 end,
 })

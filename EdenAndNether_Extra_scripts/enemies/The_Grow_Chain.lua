@@ -590,7 +590,7 @@ end,
 
 table.insert(item.ToCall,#item.ToCall + 1,{CallBack = ModCallbacks.MC_PRE_TEAR_COLLISION, params = nil,	--防止橡皮擦
 Function = function(_,ent,col,low)
-    if ent.Type == 45 then
+    if ent.Variant == 45 then
         if col.Variant == item.entity and col.Type == 909 then
             return true
         end

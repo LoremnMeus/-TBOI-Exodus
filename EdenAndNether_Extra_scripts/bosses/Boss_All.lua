@@ -62,6 +62,7 @@ local item = {
 		{name = "Basic",NoClear = true,work = function(ent,self,item)
 			local d = ent:GetData()
 			local info = d[item.own_key..self.name] 
+			auxi.check_if_any(info.special,ent,info.frame,info)
 			if info.Friction then ent.Velocity = ent.Velocity * info.Friction end
 		end,},
 		{name = "Nil",},
@@ -81,6 +82,7 @@ local item = {
 function item.basic(ent,params)
 	local d = ent:GetData()
 	d[item.own_key.."Basic"] = params or {}
+	return d[item.own_key.."Basic"]
 end
 
 function item.move_diagonally(ent,speed,params)
@@ -106,11 +108,13 @@ function item.move2pos(ent,pos,frame,special,params)
 	for u,v in pairs(params or {}) do d[item.own_key.."Move"][u] = v end
 end
 
-function item.is_clear(ent)
+function item.is_clear(ent,params)
+	params = params or {}
 	local d = ent:GetData()
 	for i = 1,#item.Strategy do
 		local bcinfo = item.Strategy[i]
 		if d[item.own_key..bcinfo.name] then return false end
+		if bcinfo.name == params.endname then return true end
 	end
 	return true
 end

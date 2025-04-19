@@ -100,7 +100,17 @@ enums.Enemies = {
     Whity = Isaac.GetEntityVariantByName("Whity"),
     Shy_Knight = Isaac.GetEntityVariantByName("Shy Knight"),
     Lil_Ghast = Isaac.GetEntityVariantByName("Lil Ghast"),
+    Mega_Host = Isaac.GetEntityVariantByName("Mega Host"),
+    Skulless_Mega_Host = Isaac.GetEntityVariantByName("Skulless Mega Host"),
+    Blossoms1 = Isaac.GetEntityVariantByName("Blossoms Agave"),
+    Blossoms2 = Isaac.GetEntityVariantByName("Blossoms Apple"),
+    Blossoms3 = Isaac.GetEntityVariantByName("Blossoms Hura"),
+    Blossoms4 = Isaac.GetEntityVariantByName("Blossoms Pea"),
+    Blossoms5 = Isaac.GetEntityVariantByName("Blossoms Thorny"),
+	
+    Blossom_Baby = Isaac.GetEntityVariantByName("Blossom Baby"),
 
+    Sandstone = Isaac.GetEntityVariantByName("Sandstone"),
 	
     Mixturer = Isaac.GetEntityVariantByName("Mixstro"),
     Neoplasm = Isaac.GetEntityVariantByName("Neoplasm"),
@@ -113,6 +123,7 @@ enums.Enemies = {
 
 enums.Entities = {
     Heaven_Door_Misc = Isaac.GetEntityVariantByName("Heaven Door Misc"),
+    Blossom_Seeds = Isaac.GetEntityVariantByName("Blossom Seeds"),
     EAN_Grid_Spawner = Isaac.GetEntityVariantByName("EAN Grid Spawner"),
 }
 

@@ -573,13 +573,11 @@ end,
 table.insert(item.ToCall,#item.ToCall + 1,{CallBack = ModCallbacks.MC_POST_NPC_INIT, params = 20,
 Function = function(_,ent)
     if StageAPI then
-        if Base_holder.TheEden:IsStage() and ent.Variant == 0 and not item.locked then
+        if ent.Variant == 0 and not item.locked then
 			local hp = ent.MaxHitPoints
-            ent:Morph(20,item.entity,0,-1)
+			Base_holder.try_convert(ent,{type = 20,variant = item.entity,subtype = 0,})
 			ent.HitPoints = hp
 			ent.MaxHitPoints = hp
-			--local q = Isaac.Spawn(20,item.entity,0,ent.Position,Vector(0,0),nil)
-			--ent:Remove()
         end
     end
 end,
@@ -588,13 +586,11 @@ end,
 table.insert(item.ToCall,#item.ToCall + 1,{CallBack = ModCallbacks.MC_POST_NPC_INIT, params = 67,
 Function = function(_,ent)
     if StageAPI then
-        if Base_holder.TheEden:IsStage() and ent.Variant == 0 and not item.locked then
+        if ent.Variant == 0 and not item.locked then
 			local hp = ent.MaxHitPoints
-            ent:Morph(20,item.entity,0,-1)
+			Base_holder.try_convert(ent,{type = 20,variant = item.entity,subtype = 0,})
 			ent.HitPoints = hp
 			ent.MaxHitPoints = hp
-			--local q = Isaac.Spawn(20,item.entity,0,ent.Position,Vector(0,0),nil)
-			--ent:Remove()
         end
     end
 end,

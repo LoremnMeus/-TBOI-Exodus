@@ -63,8 +63,8 @@ end,
 table.insert(item.ToCall,#item.ToCall + 1,{CallBack = ModCallbacks.MC_POST_NPC_INIT, params = 71,
 Function = function(_,ent)
     if StageAPI then
-        if Base_holder.TheEden:IsStage() and ent.Variant == 0 then
-            ent:Morph(71,item.entity,0,-1)
+        if ent.Variant == 0 then
+			Base_holder.try_convert(ent,{type = 71,variant = item.entity,subtype = 0,})
         end
     end
 end,

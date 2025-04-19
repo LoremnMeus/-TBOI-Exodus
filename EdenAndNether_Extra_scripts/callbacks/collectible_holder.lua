@@ -147,6 +147,7 @@ Function = function(_,player,offset)
 				save.PERSISTENT_PLAYER_DATA[idx].__META.player = nil
 				save.PERSISTENT_PLAYER_DATA[idx].__META.Seed = save.PERSISTENT_PLAYER_DATA[idx].__META.Seeded or save.PERSISTENT_PLAYER_DATA[idx].__META.Seed
 				save.add_player(player,"Check")
+				idx = d.__Index
 			else
 				save.PERSISTENT_PLAYER_DATA[idx].__META.Seed = player.InitSeed
 			end

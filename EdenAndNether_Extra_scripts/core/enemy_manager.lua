@@ -29,6 +29,9 @@ function item.Init(mod)
 	table.insert(item.items,#item.items + 1,require("EdenAndNether_Extra_scripts.enemies.Whity"))
 	table.insert(item.items,#item.items + 1,require("EdenAndNether_Extra_scripts.enemies.Shy_Knight"))
 	table.insert(item.items,#item.items + 1,require("EdenAndNether_Extra_scripts.enemies.Lil_Ghast"))
+	table.insert(item.items,#item.items + 1,require("EdenAndNether_Extra_scripts.enemies.Mega_Host"))
+	table.insert(item.items,#item.items + 1,require("EdenAndNether_Extra_scripts.enemies.Blossoms"))
+	table.insert(item.items,#item.items + 1,require("EdenAndNether_Extra_scripts.enemies.Sandstone"))
 
 	
 	table.insert(item.items,#item.items + 1,require("EdenAndNether_Extra_scripts.bosses.Boss_All"))
