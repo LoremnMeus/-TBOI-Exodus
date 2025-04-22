@@ -7,7 +7,6 @@ local AI = require("EdenAndNether_Extra_scripts.bosses.Boss_All")
 
 local item = {
 	ToCall = {},
-	entity = nil,
 	entity = enums.Enemies.Maid_in_the_Mist,
 	own_key = "Boss_Maid_in_the_Mist_",
 	Swapper = {
@@ -367,11 +366,11 @@ Function = function(_,ent)
 end,
 })
 
-if false and HPBars then
+if HPBars then
 	local path = HPBars.iconPath.."exodus/"
-	local ID = "20."..item.entity
+	local ID = "613."..item.entity
 	HPBars.BossDefinitions[ID] = {
-		sprite = path .. "mixstro.png",
+		sprite = path .. "motm.png",
 		offset = Vector(-5, 0)
 	};
 end

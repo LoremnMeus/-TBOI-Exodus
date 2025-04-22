@@ -35,10 +35,13 @@ Function = function(_,ent)
         if ent.FrameCount % 15 == 7 and d[item.own_key.."effect"].cnt > 2 then
             local s = ent:GetSprite()
             local rnd = auxi.random_1() * 360 local mx_cnt = 3
+            local vel = ent.Velocity:Length() * 0.5
+            if d[item.own_key.."effect"].vel then vel = auxi.check_if_any(d[item.own_key.."effect"].vel,vel) or vel end
             for i = 1,mx_cnt do 
                 local ang = i/mx_cnt * 360 + rnd
-                local q = Isaac.Spawn(9,9,0,ent.Position,auxi.get_by_rotate(nil,ang,ent.Velocity:Length() * 0.5),ent):ToProjectile()
+                local q = Isaac.Spawn(9,9,0,ent.Position,auxi.get_by_rotate(nil,ang,vel),ent):ToProjectile()
                 local qs = q:GetSprite() qs:Load("gfx/tears/sand_stone_tear.anm2",true) qs:Play("RegularTear3",true)
+                q.Height = ent.Height
             end
             d[item.own_key.."effect"].cnt = d[item.own_key.."effect"].cnt - 2
             s:Play("RegularTear"..tostring(d[item.own_key.."effect"].cnt),true)

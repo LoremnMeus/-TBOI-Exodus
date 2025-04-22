@@ -1,0 +1,25 @@
+2025-4-22
+Add follow entities:
+Sandstone Globin
+A stone-colored Globin that drops a sandstone fragment every 25% HP lost. Recovers 25% HP when touching its own fragments. Turns into sandstone fragments upon fatal damage and attempts to reassemble with other fragments.
+
+Cheese Wheel
+A high-flying fly that tracks players, drops from above, and fires six-way splitting sandstone projectiles. Loses 20% HP with each attack.
+
+Sandstone Grimace
+A stone-colored Grimace that fires splitting sandstone projectiles.
+
+Sandstone Death's Head
+A stone-colored Death's Head that pauses periodically to fire splitting sandstone projectiles.
+
+Eater Flower
+A man-eating plant that lurks on ceilings. Drops down when players approach.
+
+Annoyer Flower
+A pink-colored man-eating plant. Fires barrages after dropping down.
+
+Poucher Flower
+A fist-shaped man-eating plant that knocks back players after dropping.
+
+Plantera Flower
+A flower-themed entity referencing Plantera (from Terraria). Fires complex bullet patterns when dropping and applies a random buff to one enemy when rising.

@@ -11,15 +11,15 @@ local item = {
 }
 
 function item.PlayAchievement(gfxroot,dur)
-	if type(gfxroot) == "string" then gfxroot = {gfxroot = gfxroot,} end
+	if type(gfxroot) == "string" then gfxroot = {{gfxroot = gfxroot,},} end
 	for u,v in pairs(gfxroot) do
-		GiantBook_holder.PlayGiantBook({GfxRoot = v,Duration = dur or 90,
+		GiantBook_holder.PlayGiantBook({GfxRoot = v.gfxroot,Duration = v.dur or dur or 90,id = v.gfxid,Loader = v.loader,Anim = "Appear",
 		work = function(s,info)
 			if info.Appear ~= true then
 				s:Play("Appear",true)
 				info.Appear = true
 				if info.GfxRoot then
-					s:ReplaceSpritesheet(3,info.GfxRoot)
+					s:ReplaceSpritesheet(info.id or 3,info.GfxRoot)
 					s:LoadGraphics()
 				end
 			end

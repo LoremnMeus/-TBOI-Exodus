@@ -72,6 +72,16 @@
     <entity Group="Monsters" ID="88" Variant="747" Subtype="3" Image="Entities/blossoms_pea.png" Kind="EAN_Entities" Name="Blossoms Pea" />
     <entity Group="Monsters" ID="88" Variant="747" Subtype="4" Image="Entities/blossoms_thorny.png" Kind="EAN_Entities" Name="Blossoms Thorny" />
     <entity Group="Monsters" ID="284" Variant="747" Subtype="0" Image="Entities/sandstone.png" Kind="EAN_Entities" Name="Sandstone" />
+
+    <entity Group="Monsters" ID="613" Variant="750" Subtype="0" Image="Entities/sandstone_globin.png" Kind="EAN_Entities" Name="Sandstone Globin" />
+    <entity Group="Monsters" ID="613" Variant="751" Subtype="0" Image="Entities/cheese_wheel.png" Kind="EAN_Entities" Name="Cheese Wheel" />
+    <entity Group="Monsters" ID="42" Variant="747" Subtype="0" Image="Entities/sandstone_grimace.png" Kind="EAN_Entities" Name="Sandstone Grimace" />
+    <entity Group="Monsters" ID="212" Variant="747" Subtype="0" Image="Entities/sandstone_deathhead.png" Kind="EAN_Entities" Name="Sandstone Death's Head" />
+
+    <entity Group="Monsters" ID="613" Variant="752" Subtype="0" Image="Entities/eater_flower.png" Kind="EAN_Entities" Name="Eater Flower" />
+    <entity Group="Monsters" ID="613" Variant="752" Subtype="1" Image="Entities/annoyer_flower.png" Kind="EAN_Entities" Name="Annoyer Flower" />
+    <entity Group="Monsters" ID="613" Variant="752" Subtype="2" Image="Entities/poucher_flower.png" Kind="EAN_Entities" Name="Poucher Flower" />
+    <entity Group="Monsters" ID="613" Variant="752" Subtype="3" Image="Entities/plantera_flower.png" Kind="EAN_Entities" Name="Plantera Flower" />
     <!-- Apple -->
     <entity Group="Pickup" ID="5" Variant="747" Subtype="0" Image="Entities/apple.png" Kind="EAN_Entities" Name="Apple (Random)" />
     <entity Group="Pickup" ID="5" Variant="747" Subtype="1" Image="Entities/apple_1.png" Kind="EAN_Entities" Name="Apple (Red)" />

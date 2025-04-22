@@ -1059,8 +1059,9 @@ local dir_name = {
 	[Direction.DOWN] = "Down"
 }
 
-function funct.GetDirName(dir)
-	return dir_name[dir]
+function funct.GetDirName(dir,table)
+	table = table or dir_name
+	return table[dir]
 end
 
 function funct.GetDirectionByAngle(angle)

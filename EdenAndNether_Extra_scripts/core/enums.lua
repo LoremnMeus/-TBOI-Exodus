@@ -111,6 +111,11 @@ enums.Enemies = {
     Blossom_Baby = Isaac.GetEntityVariantByName("Blossom Baby"),
 
     Sandstone = Isaac.GetEntityVariantByName("Sandstone"),
+    Sandstone_Globin = Isaac.GetEntityVariantByName("Sandstone Globin"),
+    Cheese_Wheel = Isaac.GetEntityVariantByName("Cheese Wheel"),
+    Eater_Flower = Isaac.GetEntityVariantByName("Eater Flower"),
+    Sandstone_Grimace = Isaac.GetEntityVariantByName("Sandstone Grimace"),
+    Sandstone_Deathhead = Isaac.GetEntityVariantByName("Sandstone Death's Head"),
 	
     Mixturer = Isaac.GetEntityVariantByName("Mixstro"),
     Neoplasm = Isaac.GetEntityVariantByName("Neoplasm"),
@@ -132,7 +137,7 @@ enums.Pickups = {
 }
 
 enums.Musics = {
-	Eden = Isaac.GetMusicIdByName("The Mysterious Glasshouse"),
+	Eden = Isaac.GetMusicIdByName("Eden Music"),
 }
 
 if REPENTOGON then

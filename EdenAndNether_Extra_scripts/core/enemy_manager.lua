@@ -32,6 +32,11 @@ function item.Init(mod)
 	table.insert(item.items,#item.items + 1,require("EdenAndNether_Extra_scripts.enemies.Mega_Host"))
 	table.insert(item.items,#item.items + 1,require("EdenAndNether_Extra_scripts.enemies.Blossoms"))
 	table.insert(item.items,#item.items + 1,require("EdenAndNether_Extra_scripts.enemies.Sandstone"))
+	table.insert(item.items,#item.items + 1,require("EdenAndNether_Extra_scripts.enemies.Sandstone_Globin"))
+	table.insert(item.items,#item.items + 1,require("EdenAndNether_Extra_scripts.enemies.Cheese_Wheel"))
+	table.insert(item.items,#item.items + 1,require("EdenAndNether_Extra_scripts.enemies.Eater_Flower"))
+	table.insert(item.items,#item.items + 1,require("EdenAndNether_Extra_scripts.enemies.Sandstone_Grimace"))
+	table.insert(item.items,#item.items + 1,require("EdenAndNether_Extra_scripts.enemies.Sandstone_Deathhead"))
 
 	
 	table.insert(item.items,#item.items + 1,require("EdenAndNether_Extra_scripts.bosses.Boss_All"))

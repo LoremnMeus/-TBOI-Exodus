@@ -395,8 +395,11 @@ function item.has_buff(ent,id)
     if d[item.own_key.."unbuff"..tostring(id)] then return true end
 end
 
-function item.get_buff_targets(id)
+function item.get_buff_targets(id,params)
+    params = params or {}
     return auxi.getenemies(nil,function(et)
+        local ret = auxi.check_if_any(params.check_blossoms,et,params) 
+        if ret ~= nil then return ret end
         if item.has_buff(et,id) ~= true and not item.is_blossoms(et) then return true else return false end
     end)
 end
@@ -451,12 +454,12 @@ function item.add_buffs(cnt,id,params)
     params = params or {}
     id = id or 1
     cnt = cnt or 1
-    local tgs = auxi.randomTable(item.get_buff_targets(id))
+    local tgs = auxi.randomTable(item.get_buff_targets(id,params))
     for i = 1,math.min(#tgs,cnt) do
         local v = tgs[i]
         item.add_buff(v,id,params)
     end
-    if cnt > #tgs then
+    if not params.NoForce and cnt > #tgs then
         local mcnt = cnt - #tgs
         local tgs2 = auxi.randomTable(auxi.getenemies(nil,function(et)
             if not item.is_blossoms(et) then return true else return false end
@@ -465,6 +468,9 @@ function item.add_buffs(cnt,id,params)
             local v = tgs2[i]
             item.add_buff(v,id,params)
         end
+        return true
+    elseif #tgs > 0 then
+        return true
     end
 end
 

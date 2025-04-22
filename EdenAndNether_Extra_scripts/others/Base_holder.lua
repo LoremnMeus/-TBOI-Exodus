@@ -291,7 +291,7 @@ if StageAPI then
 		if roomName == "EdenFall_room_" then 
 			for u,v in pairs(ret) do if type(v) == "table" then v.SUBTYPE = 400 end end
 		end
-		if roomName == "Eden_room" then 
+		if roomName == "base_room2" then 
 			for u,v in pairs(ret) do if type(v) == "table" then v.SUBTYPE = 200 end end
 		end
 		item.EdenRoomlist[#item.EdenRoomlist + 1] = ret
@@ -360,7 +360,7 @@ if StageAPI then
 				if rng:RandomFloat() < 0.1 then is_fall = true end
 				local roominfo = StageAPI.GetCurrentRoom()
 				if roominfo and roominfo.Layout and roominfo.Layout.SubType == 400 then is_fall = true end
-				local is_rain = true
+				local is_rain = false
 				if roominfo and roominfo.Layout and roominfo.Layout.SubType == 500 then is_rain = true end
 				if is_fall then
 					item.Eden_Backdrop = "Fall"
@@ -1126,6 +1126,50 @@ if REPENTOGON then		--成就替换
 		end
 	end,
 	})
+
+end
+
+
+if ModConfigMenu then
+
+local MCM_ID = "Exodus"
+item.MCM_saver = {}
+item.MCM_credits = {
+	{gfxroot = "gfx/ui/main menu/credits.png",loader = "gfx/ui/main menu/credits2.anm2",gfxid = 1,},
+	{gfxroot = "gfx/ui/main menu/credits_1.png",loader = "gfx/ui/main menu/credits2.anm2",gfxid = 1,},
+	{gfxroot = "gfx/ui/main menu/credits_2.png",loader = "gfx/ui/main menu/credits2.anm2",gfxid = 1,},
+	{gfxroot = "gfx/ui/main menu/credits_3.png",loader = "gfx/ui/main menu/credits2.anm2",gfxid = 1,},
+}
+	
+item.ModConfigWork = {
+	["en"] = {
+		{name = "UpdateCategory",params = {{Info = {"Intro of the Exodus mod.",},},},},
+		{name = "AddText",params = {"Intro", function() return "Extro" end,},},
+		{name = "AddSetting",params = {"Intro",{		--一键锁定
+			Type = ModConfigMenu.OptionType.BOOLEAN,
+			CurrentSetting = function() return true end,
+			Display = function() return "Contributors" end,
+			OnChange = function(currentBool) 
+				Achievement_Display_holder.PlayAchievement(item.MCM_credits)
+			end,
+			Info = {"Take a look at our introduction",},
+		},},},
+	},
+}
+
+local language = Options.Language
+if not item.ModConfigWork[language] then language = "en" end
+for u,v in pairs(item.ModConfigWork[language]) do
+	ModConfigMenu[v.name](MCM_ID,v.params[1],v.params[2],v.params[3],v.params[4],v.params[5],v.params[6])
+end
+
+table.insert(item.ToCall,#item.ToCall + 1,{CallBack = ModCallbacks.MC_POST_UPDATE, params = nil,
+Function = function()
+	for u,v in pairs(item.MCM_saver) do
+		if (ModConfigMenu.Config[MCM_ID] or {})[v] ~= nil then item.ModConfigSettings[u] = (ModConfigMenu.Config[MCM_ID] or {})[v] end
+	end
+end,
+})
 
 end
 
