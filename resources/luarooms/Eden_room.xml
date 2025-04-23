@@ -2166,6 +2166,9 @@
 		<door exists="True" x="6" y="-1"/>
 		<door exists="True" x="6" y="7"/>
 		<door exists="True" x="13" y="3"/>
+		<spawn x="1" y="1">
+			<entity type="747" variant="1002" subtype="0" weight="1.0"/>
+		</spawn>
 		<spawn x="2" y="1">
 			<entity type="747" variant="1001" subtype="0" weight="1.0"/>
 		</spawn>
@@ -2193,11 +2196,23 @@
 		<spawn x="10" y="1">
 			<entity type="747" variant="1001" subtype="0" weight="1.0"/>
 		</spawn>
+		<spawn x="11" y="1">
+			<entity type="747" variant="1002" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="1" y="2">
+			<entity type="747" variant="1002" subtype="0" weight="1.0"/>
+		</spawn>
 		<spawn x="2" y="2">
 			<entity type="747" variant="1001" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="10" y="2">
 			<entity type="747" variant="1001" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="11" y="2">
+			<entity type="747" variant="1002" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="1" y="3">
+			<entity type="747" variant="1002" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="2" y="3">
 			<entity type="747" variant="1001" subtype="0" weight="1.0"/>
@@ -2205,11 +2220,23 @@
 		<spawn x="10" y="3">
 			<entity type="747" variant="1001" subtype="0" weight="1.0"/>
 		</spawn>
+		<spawn x="11" y="3">
+			<entity type="747" variant="1002" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="1" y="4">
+			<entity type="747" variant="1002" subtype="0" weight="1.0"/>
+		</spawn>
 		<spawn x="2" y="4">
 			<entity type="747" variant="1001" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="10" y="4">
 			<entity type="747" variant="1001" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="11" y="4">
+			<entity type="747" variant="1002" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="1" y="5">
+			<entity type="747" variant="1002" subtype="0" weight="1.0"/>
 		</spawn>
 		<spawn x="2" y="5">
 			<entity type="747" variant="1001" subtype="0" weight="1.0"/>
@@ -2237,6 +2264,9 @@
 		</spawn>
 		<spawn x="10" y="5">
 			<entity type="747" variant="1001" subtype="0" weight="1.0"/>
+		</spawn>
+		<spawn x="11" y="5">
+			<entity type="747" variant="1002" subtype="0" weight="1.0"/>
 		</spawn>
 	</room>
 </rooms>

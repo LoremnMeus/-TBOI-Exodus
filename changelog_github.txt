@@ -1,3 +1,9 @@
+2025-4-23
+Apply the change on the EntitiesMod.xml and add StageMod.xml.
+Add a blush that won't spawn fruits.
+Blush won't automatically replace the poops in room now.
+Fix a bug caused by transfer.py
+
 2025-4-22
 Add follow entities:
 Sandstone Globin

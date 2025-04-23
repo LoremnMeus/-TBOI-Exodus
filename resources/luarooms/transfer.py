@@ -170,10 +170,10 @@ def xml_to_lua(xml_file, lua_file):
             
             # 处理生成点
             for spawn in room.findall('spawn'):
-                entity = spawn.find('entity')
                 f.write(f'\t\t{{ISDOOR=false, GRIDX={int(spawn.get("x"))}, GRIDY={int(spawn.get("y"))},\n')
-                f.write(f'\t\t\t{{TYPE={int(entity.get("type"))}, VARIANT={int(entity.get("variant"))}, '
-                       f'SUBTYPE={int(entity.get("subtype"))}, WEIGHT={round(float(entity.get("weight")), 6)}, METADATA=nil}},\n')
+                for entity in spawn.findall('entity'):  # 遍历所有entity子元素
+                    f.write(f'\t\t\t{{TYPE={int(entity.get("type"))}, VARIANT={int(entity.get("variant"))}, '
+                           f'SUBTYPE={int(entity.get("subtype"))}, WEIGHT={round(float(entity.get("weight")), 6)}, METADATA=nil}},\n')
                 f.write('\t\t},\n')
             
             f.write('\t},\n')
@@ -182,8 +182,8 @@ def xml_to_lua(xml_file, lua_file):
 
 # 使用示例
 xml_to_lua('EdenFall_room_.xml', 'EdenFall_room_.lua')
-#xml_to_lua('Mixture_room.xml', 'Mixture_room.lua')
+xml_to_lua('Mixture_room.xml', 'Mixture_room.lua')
 xml_to_lua('Eden_room.xml', 'Eden_room.lua')
-#xml_to_lua('Nether_room.xml', 'Nether_room.lua')
-#xml_to_lua('base_room1.xml', 'base_room1.lua')
-#xml_to_lua('base_room2.xml', 'base_room2.lua')
+xml_to_lua('Nether_room.xml', 'Nether_room.lua')
+xml_to_lua('base_room1.xml', 'base_room1.lua')
+xml_to_lua('base_room2.xml', 'base_room2.lua')

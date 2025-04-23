@@ -60,6 +60,7 @@ local item = {
 		["VisitCount"] = true,
 	},
 	Eden_Backdrop = "",
+	Eden_Pillar_list = {},
 }
 
 if StageAPI then
@@ -82,7 +83,16 @@ if StageAPI then
 		StageAPI.AddOverrideStage("SHEOL",LevelStage.STAGE5,StageType.STAGETYPE_ORIGINAL,StageAPI.SHEOL,false)
 	end
 
-
+	item.ScenaryBlushGrid = StageAPI.CustomGrid("ExodusBlushScenary", {
+		BaseType = GridEntityType.GRID_POOP,
+		Anm2 = "gfx/backdrops/blush.anm2",
+		RemoveOnAnm2Change = true,
+		Animation = "State1",
+		OverrideGridSpawns = true,
+		PoopExplosionColor = Color(0,0,0,0.7,55 / 255,148 / 255,110 / 255),
+		PoopGibSheet = "gfx/backdrops/effect_blush.png",
+		SpawnerEntity = {Type = 747, Variant = 1002,}
+	})
 	item.BlushGrid = StageAPI.CustomGrid("ExodusBlush", {
 		BaseType = GridEntityType.GRID_POOP,
 		Anm2 = "gfx/backdrops/blush.anm2",
@@ -100,13 +110,16 @@ if StageAPI then
 		local room = Game():GetRoom()
 		local currentRoom = StageAPI.GetCurrentRoom()
 		if room:IsFirstVisit() and (not currentRoom or currentRoom.VisitCount == 1) and item.TheEden:IsStage() then
-			gridReplacementRNG:SetSeed(room:GetSpawnSeed(), 0) -- grid rng is broken for reward plates, so lets just do this
-			for i = 0, room:GetGridSize() do
-				local grid = room:GetGridEntity(i)
-				if grid and not StageAPI.IsCustomGrid(i) then
-					if grid.Desc.Type == GridEntityType.GRID_POOP and grid.Desc.Variant == 0 then
-						if gridReplacementRNG:RandomFloat() <= 0.25 then
-							item.BlushGrid:Spawn(i, false, true)
+			local roominfo = StageAPI.GetCurrentRoom()
+			if roominfo and roominfo.Layout and roominfo.Layout.SubType == 200 then 
+				gridReplacementRNG:SetSeed(room:GetSpawnSeed(), 0) -- grid rng is broken for reward plates, so lets just do this
+				for i = 0, room:GetGridSize() do
+					local grid = room:GetGridEntity(i)
+					if grid and not StageAPI.IsCustomGrid(i) then
+						if grid.Desc.Type == GridEntityType.GRID_POOP and grid.Desc.Variant == 0 then
+							if gridReplacementRNG:RandomFloat() <= 0.25 then
+								item.BlushGrid:Spawn(i, false, true)
+							end
 						end
 					end
 				end
@@ -125,7 +138,12 @@ if StageAPI then
 			local q = Isaac.Spawn(5,100,381,pos,Vector(0,0),nil)
 		end
 	end, "ExodusBlush")
-
+	
+	StageAPI.AddCallback("Exodus", "POST_SPAWN_CUSTOM_GRID", 1, function(customGrid)
+		local grid = customGrid.GridEntity
+		local sprite = grid:GetSprite()
+		auxi.SetPoopSpriteState(grid, sprite)
+	end, "ExodusBlushScenary")
 	StageAPI.AddCallback("Exodus", "POST_SPAWN_CUSTOM_GRID", 1, function(customGrid)
 		local grid = customGrid.GridEntity
 		local sprite = grid:GetSprite()
@@ -190,28 +208,30 @@ if StageAPI then
 	item.EdenFallGrid:SetDecorations("gfx/backdrops/Eden_props.png", "gfx/grid/props_05_depths.anm2", 43)
 	item.EdenFallGrid:SetRocks("gfx/backdrops/Eden_fall_grids_.png")
 	item.EdenFallGrid:SetPits("gfx/backdrops/eden_pit_2.png",{{File = "gfx/backdrops/eden_pit_2.png"}},false)
-
-	local grid_replace = {
-		['gfx/backdrops/Eden_fall_grids_.png'] = true,
-		['gfx/backdrops/Eden_grids_.png'] = true,
-	}
-	local original_ChangeRock = StageAPI.ChangeRock
-	local rock_replace_eden = "gfx/backdrops/grid_rock_eden.anm2"
-	StageAPI.ChangeRock = function(rock, filename)
-		local grid = rock.Grid local gs = grid:GetSprite() local rfilename = gs:GetFilename()
-		if grid:GetType() == 24 and grid_replace[filename] and rfilename ~= rock_replace_eden then
-			local anim = gs:GetAnimation() local fr = gs:GetFrame() 
-			gs:Load(rock_replace_eden,true)
-            gs:SetFrame(anim, fr)
-		end
-		original_ChangeRock(rock, filename)
-	end
 	
 	if REPENTOGON then
+		local grid_replace = {
+			['gfx/backdrops/Eden_fall_grids_.png'] = true,
+			['gfx/backdrops/Eden_grids_.png'] = true,
+		}
+		local original_ChangeRock = StageAPI.ChangeRock
+		local rock_replace_eden = "gfx/backdrops/grid_rock_eden.anm2"
+		StageAPI.ChangeRock = function(rock, filename)
+			original_ChangeRock(rock, filename)
+			local grid = rock.Grid local gs = grid:GetSprite() local rfilename = gs:GetFilename()
+			if grid:GetType() == 24 and grid_replace[filename] and rfilename ~= rock_replace_eden then
+				local anim = gs:GetAnimation() local fr = gs:GetFrame() 
+				gs:Load(rock_replace_eden,true)
+				gs:SetFrame(anim, fr)
+			end
+		end
+
 		item.EdenGrid:SetPits("gfx/grid/grid_pit_ashpit.png",{{File = "gfx/grid/grid_pit_ashpit_.png"}},false)
 		item.EdenFallGrid:SetPits("gfx/grid/grid_pit_ashpit.png",{{File = "gfx/grid/grid_pit_ashpit_.png"}},false)
 		local s2 = Sprite() s2:Load("gfx/pit_Misc.anm2",true) s2:Play("pit",true) --s2:PlayOverlay("highlights",true) s2:ReplaceSpritesheet(1,"")
 		local s3 = Sprite() s3:Load("gfx/pit_Misc.anm2",true) s3:ReplaceSpritesheet(0,"gfx/backdrops/eden_pit_nowater.png") s3:LoadGraphics() s3:Play("pit",true)
+		local s4 = Sprite() s4:Load("gfx/pit_Misc.anm2",true) s4:ReplaceSpritesheet(1,"gfx/backdrops/Eden_grids_.png") s4:LoadGraphics() s4:Play("pit",true)
+		local s5 = Sprite() s5:Load(rock_replace_eden,true)
 		table.insert(item.ToCall,#item.ToCall + 1,{CallBack = ModCallbacks.MC_PRE_GRID_ENTITY_ROCK_UPDATE, params = 24,
 		Function = function(_,grid,offset)
 			local gs = grid:GetSprite()
@@ -227,10 +247,58 @@ if StageAPI then
 				if succ then if ca >= 0.5 then ca = ca - 0.05 end
 				else if ca <= 1 then ca = ca + 0.05 end end
 				gs.Color = Color(c.R,c.G,c.B,ca,c.RO,c.GO,c.BO)
+
+				local room = Game():GetRoom()
+				local width = room:GetGridWidth()
+				local height = room:GetGridHeight()
+				local gidx = grid:GetGridIndex()
+				local x = gidx % width
+				local y = math.floor(gidx / width)
+				if not item.Eden_Pillar_list[y] or item.Eden_Pillar_list[y].ent:Exists() ~= true then
+					item.Eden_Pillar_list[y] = item.Eden_Pillar_list[y] or {}
+					local q = Isaac.Spawn(1000,enums.Entities.Pillar_Misc,0,grid.Position,Vector(0,0),nil):ToEffect()
+					item.Eden_Pillar_list[y].ent = q q.TargetPosition = q.Position
+					local qd = q:GetData() qd[item.own_key.."effect"] = {id = y,}
+				end
+				item.Eden_Pillar_list[y][x] = 1
 			end
 		end,
 		})
-		--!缺石桥/刺石桥的贴图
+
+		table.insert(item.ToCall,#item.ToCall + 1,{CallBack = ModCallbacks.MC_POST_EFFECT_UPDATE, params = enums.Entities.Pillar_Misc,
+		Function = function(_,ent)
+			ent.Velocity = Vector(0,0)
+			ent.Position = ent.TargetPosition
+		end,
+		})
+
+		table.insert(item.ToCall,#item.ToCall + 1,{CallBack = ModCallbacks.MC_POST_EFFECT_RENDER, params = enums.Entities.Pillar_Misc,
+		Function = function(_,ent,offset)
+			local d = ent:GetData()
+			local room = Game():GetRoom()
+			local width = room:GetGridWidth()
+			local height = room:GetGridHeight()
+			if d[item.own_key.."effect"] and item.Eden_Pillar_list[d[item.own_key.."effect"].id] then
+				local y = d[item.own_key.."effect"].id
+				local tbl = item.Eden_Pillar_list[y]
+				for u,v in pairs(item.Eden_Pillar_list[d[item.own_key.."effect"].id]) do
+					if type(u) == "number" then
+						local gidx = u + width * y
+						local grid = room:GetGridEntity(gidx)
+						if grid and grid:GetType() == 24 then
+							s5 = auxi.copy_sprite(grid:GetSprite(),s5,{Anim = "pillar_misc",})
+							local rpos = Isaac.WorldToScreen(grid.Position) - Game().ScreenShakeOffset
+							if (Game():GetRoom():GetRenderMode() == RenderMode.RENDER_WATER_REFRACT) then
+								rpos = (auxi.GetWaterRenderOffset()) + Isaac.WorldToScreen(grid.Position) - Game().ScreenShakeOffset
+							end
+							s5:Render(rpos)
+						else item.Eden_Pillar_list[d[item.own_key.."effect"].id][u] = nil end
+					end
+				end
+			end
+		end,
+		})
+		
 		table.insert(item.ToCall,#item.ToCall + 1,{CallBack = ModCallbacks.MC_PRE_GRID_ENTITY_PIT_RENDER, params = nil,
 		Function = function(_,pit)
 			if item.TheEden:IsStage() then		-- and item.Eden_Backdrop ~= ""
@@ -245,7 +313,7 @@ if StageAPI then
 
 				local rpos = Isaac.WorldToScreen(pit.Position) - Game().ScreenShakeOffset
 				if (Game():GetRoom():GetRenderMode() == RenderMode.RENDER_WATER_REFRACT) then
-					rpos = (MOVE_OFFSET or auxi.GetWaterRenderOffset()) + Isaac.WorldToScreen(pit.Position) - Game().ScreenShakeOffset
+					rpos = (auxi.GetWaterRenderOffset()) + Isaac.WorldToScreen(pit.Position) - Game().ScreenShakeOffset
 				end
 
 				--local srpos = auxi.check_screen_size(rpos/256)
@@ -261,6 +329,23 @@ if StageAPI then
 				if not s2:HasCustomShader(path) then s2:SetCustomShader(path) end
 				s3:Render(rpos)
 				s2:Render(rpos)--s2:RenderLayer(0,rpos)
+				if pit.State ~= 0 then
+					if item.Eden_Backdrop ~= item.s4_backdrop then
+						item.s4_backdrop = item.Eden_Backdrop
+						if item.Eden_Backdrop == "Fall" then
+							s4:ReplaceSpritesheet(1,"gfx/backdrops/Eden_fall_grids_.png") s4:LoadGraphics()
+						else
+							s4:ReplaceSpritesheet(1,"gfx/backdrops/Eden_grids_.png") s4:LoadGraphics()
+						end
+					end
+					if pit.State == 1 then
+						s4:SetFrame("bridge",0)
+						s4:Render(rpos)
+					elseif pit.State == 2 then
+						s4:SetFrame("bridge",1)
+						s4:Render(rpos)
+					end
+				end
 				return false
 			end
 		end,

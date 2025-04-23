@@ -1,0 +1,15 @@
+<data>
+    <stage Name="Eden" Stage="10" StageType="1" Pattern="eden">
+        <Gfx BGPrefix="Grids/Eden">
+            <Entity ID="1000" Image="Grids/Eden_grids_.png" />
+			<Entity ID="1001" Image="Grids/1001.0.0 - Bomb Rock Eden.png" />
+			<Entity ID="1010" Image="Grids/1010.0.0 - Spike Rock Eden.png" />
+			<Entity ID="1011" Image="Grids/1011.0.0 - Fool's Gold Rock Eden.png" />
+			<Entity ID="1002" Image="Grids/1002.0.0 - Pot Eden.png" />
+			<Entity ID="1900" Image="Grids/1900.0.0 - Block Eden.png" />
+			<Entity ID="1901" Image="Grids/1901.0.0 - Pillow Eden.png" />
+			<Entity ID="3000" Image="Grids/Eden_pit.png" />
+			<Entity ID="3009" Image="Grids/Eden_pit.png" />
+        </Gfx>
+    </stage>
+</data>

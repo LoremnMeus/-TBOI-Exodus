@@ -1,0 +1,99 @@
+<data>
+    <!-- Cursed Dip -->
+    <entity Group="Monsters" ID="217" Variant="747" Subtype="0" Image="Entities/cursed_dip.png" Kind="EAN_Entities" Name="Cursed Dip" />
+    
+    <!-- Holy Dip -->
+    <entity Group="Monsters" ID="217" Variant="748" Subtype="0" Image="Entities/holy_dip.png" Kind="EAN_Entities" Name="Holy Dip" />
+    
+    <!-- Cursed Big Dip -->
+    <entity Group="Monsters" ID="220" Variant="747" Subtype="0" Image="Entities/cursed_bigdip.png" Kind="EAN_Entities" Name="Cursed Big Dip" />
+    
+    <!-- Holy Big Dip -->
+    <entity Group="Monsters" ID="220" Variant="748" Subtype="0" Image="Entities/holy_bigdip.png" Kind="EAN_Entities" Name="Holy Big Dip" />
+    
+    <!-- White Wizoob -->
+    <entity Group="Monsters" ID="219" Variant="747" Subtype="0" Image="Entities/white_wizoob.png" Kind="EAN_Entities" Name="White Wizoob" />
+    
+    <!-- Eye Flower -->
+    <entity Group="Monsters" ID="60" Variant="2" Subtype="747" Image="Entities/eye_flower.png" Kind="EAN_Entities" Name="Eye Flower" />
+    
+    <!-- Grow Maw -->
+    <entity Group="Monsters" ID="26" Variant="747" Subtype="0" Image="Entities/grow_maw.png" Kind="EAN_Entities" Name="Grow Maw" />
+    
+    <!-- Grow Horf -->
+    <entity Group="Monsters" ID="12" Variant="747" Subtype="0" Image="Entities/grow_horf.png" Kind="EAN_Entities" Name="Grow Horf" />
+    
+    <!-- Grower -->
+    <entity Group="Monsters" ID="90" Variant="747" Subtype="0" Image="Entities/grower.png" Kind="EAN_Entities" Name="Grower" />
+    
+    <!-- Holy Sucker -->
+    <entity Group="Monsters" ID="61" Variant="747" Subtype="0" Image="Entities/holy_sucker.png" Kind="EAN_Entities" Name="Holy Sucker" />
+    
+    <!-- Losy -->
+    <entity Group="Monsters" ID="227" Variant="747" Subtype="0" Image="Entities/losy.png" Kind="EAN_Entities" Name="Losy" />
+    
+    <!-- White Boom Fly -->
+    <entity Group="Monsters" ID="25" Variant="747" Subtype="0" Image="Entities/white_bomb_fly.png" Kind="EAN_Entities" Name="White Boom Fly" />
+
+    <!-- Mullibloom -->
+    <entity Group="Monsters" ID="16" Variant="747" Subtype="0" Image="Entities/mullibloom.png" Kind="EAN_Entities" Name="Mullibloom" />
+    
+    <!-- Mullibloom Seed -->
+    <entity Group="Monsters" ID="30" Variant="747" Subtype="1" Image="Entities/seed.png" Kind="EAN_Entities" Name="Mullibloom Seed" />
+    
+    <!-- Holy Pooter -->
+    <entity Group="Monsters" ID="14" Variant="747" Subtype="0" Image="Entities/holy_pooter.png" Kind="EAN_Entities" Name="Holy Pooter" />
+    
+    <!-- Whity -->
+    <entity Group="Monsters" ID="226" Variant="747" Subtype="0" Image="Entities/whity.png" Kind="EAN_Entities" Name="Whity" />
+    
+    <!-- Shy Knight -->
+    <entity Group="Monsters" ID="41" Variant="747" Subtype="0" Image="Entities/shy_knight.png" Kind="EAN_Entities" Name="Shy Knight" />
+    
+    <!-- Mixstro -->
+    <entity Group="Monsters" ID="20" Variant="747" Subtype="0" Image="Entities/boss_mixstro.png" Kind="EAN_Entities" Name="Mixstro" />
+	
+    <!-- Neoplasm 系列 -->
+    <entity Group="Monsters" ID="71" Variant="747" Subtype="0" Image="Entities/boss_neoplasm_big.png" Kind="EAN_Entities" Name="Neoplasm" />
+    <entity Group="Monsters" ID="72" Variant="747" Subtype="0" Image="Entities/boss_neoplasm_mid.png" Kind="EAN_Entities" Name="Neoplasm Medium" />
+    <entity Group="Monsters" ID="73" Variant="747" Subtype="0" Image="Entities/boss_neoplasm_small.png" Kind="EAN_Entities" Name="Neoplasm Small" />
+
+    <!-- Maid of the Mist -->
+    <entity Group="Monsters" ID="613" Variant="747" Subtype="0" Image="Entities/boss_maid_mist.png" Kind="EAN_Entities" Name="Maid of the Mist" />
+    <!-- Lil Ghast -->
+    <entity Group="Monsters" ID="613" Variant="748" Subtype="0" Image="Entities/lil_ghast.png" Kind="EAN_Entities" Name="Lil Ghast" />
+
+    <entity Group="Monsters" ID="27" Variant="747" Subtype="0" Image="Entities/mega_host.png" Kind="EAN_Entities" Name="Mega Host" />
+    <entity Group="Monsters" ID="27" Variant="1" Subtype="747" Image="Entities/skulless_mega_host.png" Kind="EAN_Entities" Name="Skulless Mega Host" />
+
+    <entity Group="Monsters" ID="88" Variant="747" Subtype="0" Image="Entities/blossoms_agave.png" Kind="EAN_Entities" Name="Blossoms Agave" />
+    <entity Group="Monsters" ID="88" Variant="747" Subtype="1" Image="Entities/blossoms_apple.png" Kind="EAN_Entities" Name="Blossoms Apple" />
+    <entity Group="Monsters" ID="88" Variant="747" Subtype="2" Image="Entities/blossoms_hura.png" Kind="EAN_Entities" Name="Blossoms Hura" />
+    <entity Group="Monsters" ID="88" Variant="747" Subtype="3" Image="Entities/blossoms_pea.png" Kind="EAN_Entities" Name="Blossoms Pea" />
+    <entity Group="Monsters" ID="88" Variant="747" Subtype="4" Image="Entities/blossoms_thorny.png" Kind="EAN_Entities" Name="Blossoms Thorny" />
+    <entity Group="Monsters" ID="284" Variant="747" Subtype="0" Image="Entities/sandstone.png" Kind="EAN_Entities" Name="Sandstone" />
+
+    <entity Group="Monsters" ID="613" Variant="750" Subtype="0" Image="Entities/sandstone_globin.png" Kind="EAN_Entities" Name="Sandstone Globin" />
+    <entity Group="Monsters" ID="613" Variant="751" Subtype="0" Image="Entities/cheese_wheel.png" Kind="EAN_Entities" Name="Cheese Wheel" />
+    <entity Group="Monsters" ID="42" Variant="747" Subtype="0" Image="Entities/sandstone_grimace.png" Kind="EAN_Entities" Name="Sandstone Grimace" />
+    <entity Group="Monsters" ID="212" Variant="1" Subtype="747" Image="Entities/sandstone_deathhead.png" Kind="EAN_Entities" Name="Sandstone Death's Head" />
+
+    <entity Group="Monsters" ID="613" Variant="752" Subtype="0" Image="Entities/eater_flower.png" Kind="EAN_Entities" Name="Eater Flower" />
+    <entity Group="Monsters" ID="613" Variant="752" Subtype="1" Image="Entities/annoyer_flower.png" Kind="EAN_Entities" Name="Annoyer Flower" />
+    <entity Group="Monsters" ID="613" Variant="752" Subtype="2" Image="Entities/poucher_flower.png" Kind="EAN_Entities" Name="Poucher Flower" />
+    <entity Group="Monsters" ID="613" Variant="752" Subtype="3" Image="Entities/plantera_flower.png" Kind="EAN_Entities" Name="Plantera Flower" />
+    <!-- Apple -->
+    <entity Group="Pickup" ID="5" Variant="747" Subtype="0" Image="Entities/apple.png" Kind="EAN_Entities" Name="Apple (Random)" />
+    <entity Group="Pickup" ID="5" Variant="747" Subtype="1" Image="Entities/apple_1.png" Kind="EAN_Entities" Name="Apple (Red)" />
+    <entity Group="Pickup" ID="5" Variant="747" Subtype="2" Image="Entities/apple_3.png" Kind="EAN_Entities" Name="Apple (Green)" />
+    <entity Group="Pickup" ID="5" Variant="747" Subtype="3" Image="Entities/apple_2.png" Kind="EAN_Entities" Name="Apple (Golden)" />
+    <entity Group="Pickup" ID="5" Variant="747" Subtype="4" Image="Entities/dragon.png" Kind="EAN_Entities" Name="Dragon fruit" />
+    <entity Group="Pickup" ID="5" Variant="747" Subtype="5" Image="Entities/watermelon_1.png" Kind="EAN_Entities" Name="Watermelon (Full)" />
+    <entity Group="Pickup" ID="5" Variant="747" Subtype="6" Image="Entities/watermelon_2.png" Kind="EAN_Entities" Name="Watermelon (One bite)" />
+    <entity Group="Pickup" ID="5" Variant="747" Subtype="7" Image="Entities/watermelon_3.png" Kind="EAN_Entities" Name="Watermelon (Two bites)" />
+    <entity Group="Pickup" ID="5" Variant="747" Subtype="8" Image="Entities/watermelon_4.png" Kind="EAN_Entities" Name="Watermelon (Three bites)" />
+    <entity Group="Pickup" ID="5" Variant="747" Subtype="9" Image="Entities/breadfruit.png" Kind="EAN_Entities" Name="Bread fruit" />
+    <entity Group="Pickup" ID="5" Variant="747" Subtype="10" Image="Entities/kiwi.png" Kind="EAN_Entities" Name="Kiwi fruit" />
+    
+    <entity Group="Grid" ID="747" Variant="1001" Subtype="0" Image="Entities/grid_blush.png" Kind="EAN_Entities" Name="Grid Blush" />
+</data>

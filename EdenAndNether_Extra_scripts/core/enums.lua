@@ -128,6 +128,7 @@ enums.Enemies = {
 
 enums.Entities = {
     Heaven_Door_Misc = Isaac.GetEntityVariantByName("Heaven Door Misc"),
+    Pillar_Misc = Isaac.GetEntityVariantByName("Pillar Misc"),
     Blossom_Seeds = Isaac.GetEntityVariantByName("Blossom Seeds"),
     EAN_Grid_Spawner = Isaac.GetEntityVariantByName("EAN Grid Spawner"),
 }
